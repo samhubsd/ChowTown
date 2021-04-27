@@ -30,8 +30,8 @@ public class DataParser
             {
                 vicinity = googlePlaceJSON.getString("vicinity");
             }
-            latitude = googlePlaceJSON.getJSONObject("geonometry").getJSONObject("location").getString("lat");
-            longitude = googlePlaceJSON.getJSONObject("geonometry").getJSONObject("location").getString("lng");
+            latitude = googlePlaceJSON.getJSONObject("geometry").getJSONObject("location").getString("lat");
+            longitude = googlePlaceJSON.getJSONObject("geometry").getJSONObject("location").getString("lng");
             reference = googlePlaceJSON.getString("reference");
 
             googlePlaceMap.put("place_name", NameOfPlace);

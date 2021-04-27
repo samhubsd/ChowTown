@@ -20,6 +20,7 @@
             android:layout_alignParentLeft="true" />
 
         <ImageButton
+            android:id="@+id/search_address"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_alignParentTop="true"

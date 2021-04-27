@@ -27,20 +27,23 @@ public class DownloadURL
 
             String line = "";
 
-            while ((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null)
+            {
                 stringBuffer.append(line);
             }
 
             Data = stringBuffer.toString();
             bufferedReader.close();
         }
-        catch (MalformedURLException e) {
+        catch (MalformedURLException e)
+        {
             e.printStackTrace();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
-        finally {
+        finally
+        {
             inputStream.close();
             httpURLConnection.disconnect();
         }

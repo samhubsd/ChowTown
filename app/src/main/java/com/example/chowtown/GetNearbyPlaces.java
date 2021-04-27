@@ -2,6 +2,7 @@ package com.example.chowtown;
 
 import android.os.AsyncTask;
 import android.view.Display;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -63,11 +64,11 @@ public class GetNearbyPlaces extends AsyncTask<Object, String, String>
 
             markerOptions.position(latLng);
             markerOptions.title(nameOfPlace + " - " + vicinity);
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
 
             mMap.addMarker(markerOptions);
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            mMap.animateCamera(CameraUpdateFactory.zoomBy(11));
+            //mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            //mMap.animateCamera(CameraUpdateFactory.zoomBy(0));
         }
     }
 }
