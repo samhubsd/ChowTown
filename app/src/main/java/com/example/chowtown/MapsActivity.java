@@ -111,7 +111,12 @@ public class MapsActivity extends FragmentActivity implements
 
                                 mMap.addMarker(userMarkerOptions);
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                                mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+                                mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+
+                                lastLocation.setLatitude(userAddress.getLatitude());
+                                lastLocation.setLongitude(userAddress.getLongitude());
+                                
+                                onLocationChanged(lastLocation);
                             }
                         }
                         else
@@ -127,7 +132,7 @@ public class MapsActivity extends FragmentActivity implements
                 break;
 
             case R.id.nearby_restaurants:
-                mMap.clear();
+                //mMap.clear();
                 String url = getUrl(latitude, longitude, restaurant);
                 transferData[0] = mMap;
                 transferData[1] = url;
@@ -135,6 +140,19 @@ public class MapsActivity extends FragmentActivity implements
                 getNearbyPlaces.execute(transferData);
                 Toast.makeText(this, "Searching for Nearby Restaurants...", Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, "Showing Nearby Restaurants...", Toast.LENGTH_SHORT).show();
+
+                LatLng latLng = new LatLng(latitude, longitude);
+/*
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(latLng);
+                markerOptions.title("Current Location");
+                markerOptions.draggable(true);
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+
+                currentUserLocationMarker = mMap.addMarker(markerOptions);
+*/
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
                 break;
         }
     }
@@ -156,6 +174,7 @@ public class MapsActivity extends FragmentActivity implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
         {
@@ -244,7 +263,7 @@ public class MapsActivity extends FragmentActivity implements
         currentUserLocationMarker = mMap.addMarker(markerOptions);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomBy(13));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
 
         if (googleApiClient != null)
         {
